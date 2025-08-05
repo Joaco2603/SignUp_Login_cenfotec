@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons+Round"
+      rel="stylesheet"/>
+</head>
+<body>
+  
+    <section class="login-container">
+        <article class="form-container">
+          <div class="intro">
+            <h1>Bienvenido</h1>
+            <p>Bienvenido es un honor tenerte, ingrese los datos del formulario</p>
+          </div>
+  
+          <form method="POST" action="/signup" class="form" id="form">
+
+            <div class="email-input">
+              <span class="material-icons-round">person</span>
+              <span id="seperator"></span>
+              <div class="input-container">
+                <span class="sub-title">Nombre</span>
+                <input type="Name" name="name" id="Name" />
+              </div>
+            </div>
+
+            <div class="email-input">
+              <span class="material-icons-round">person</span>
+              <span id="seperator"></span>
+              <div class="input-container">
+                <span class="sub-title">Apellido</span>
+                <input type="Name" name="last_name" id="Name" />
+              </div>
+            </div>
+
+
+            <div class="email-input">
+              <span class="material-icons-round icon-size"> mail_outline </span>
+              <span id="seperator"></span>
+              <div class="input-container">
+                <span class="sub-title">Correo</span>
+                <input type="email" name="email" id="email" />
+              </div>
+            </div>
+  
+            <div class="email-input">
+              <span class="material-icons-round icon-size"> password </span>
+              <span id="seperator"></span>
+              <div class="input-container">
+                <span class="sub-title">Contraseña</span>
+                <input type="password" name="password" id="password" />
+              </div>
+            </div>
+
+  
+            <button type="submit" id="submit">Continue</button>
+            <div id="loader"></div>
+          </form>
+  
+        </article>
+        <article class="login-side-bg"></article>
+      </section>  
+</body>
+</html>

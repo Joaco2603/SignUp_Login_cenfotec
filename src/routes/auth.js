@@ -1,63 +1,92 @@
 const { Router } = require('express');
 
-// Modelo del usuario
-const user = require('./models/users.js');
-
 const router = Router();
 
-router.get("/login", async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        userFind = await user.findOne({
-            email: email,
-            password: password
-        });
+// Modelo del usuario
+const user = require('../models/users.js');
 
-        response.cookie('check', true, {
-            email: email,
-            maxAge: 60000,
-        }, {
-            httpOnly: true
-        });
+//Htmls
+router.get('/', (req, res) => {
+  res.render("index.html");
+})
 
-        if (!userFind) throw new Error('Not found user', 404);
+router.get('/login', (req, res) => {
+  res.render("login.html");
+})
 
+router.get('/signup', (req, res) => {
+  res.render("signup.html");
+})
 
-        return userFind;
+//Use cases
+router.post("/login", async (req, res) => {
+  if (!req.body) return res.status(404).send('Body is required')
 
-    } catch (error) {
-        throw new Error('Internal server error', 500)
-    }
-});
+  const { email, password } = req.body;
 
-router.get("/signup", async(req, res) => {
-    const { name, last_name, email, password } = req.body;
-    try {
-        newUser = await user.save({
-            name: name,
-            last_name: last_name,
-            email: email,
-            password: password
-        });
+  try {
 
-        response.cookie('check', true, {
-            email: email,
-            maxAge: 60000,
-        }, {
-            httpOnly: true
-        });
-
-
-        return newUser;
-    } catch (error) {
-        throw new Error('Internal server error', 500)
-    }
-
-});
-
-router.get("forgot_password", (req, res) => {
-    response.cookie('check', true, {
-        emal: email,
-        maxAge: 60000,
+    const userFind = await user.findOne({
+      email: email,
+      password: password
     });
+
+    if (!userFind) {
+      return res.status(404).send('User not found');
+    }
+
+    // Almacenar datos en la sesión
+    req.session.check = true;
+    req.session.email = email;
+
+    res.json(userFind);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error interno del servidor');
+  }
 });
+
+// Signup
+router.post("/signup", async (req, res) => {
+  if (!req.body) return res.status(404).send('Body is required')
+
+  const { name, last_name, email, password } = req.body;
+  try {
+    const newUser = await user.save({
+      name: name,
+      last_name: last_name,
+      email: email,
+      password: password
+    });
+
+    // Almacenar datos en la sesión
+    req.session.check = true;
+    req.session.email = email;
+
+    res.json(newUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error interno del servidor');
+  }
+});
+
+// Forgot password
+router.post("/forgot_password", (req, res) => {
+  // Almacenar datos en la sesión
+  req.session.check = true;
+  req.session.email = req.body.email; // Asumo que email viene en el body
+
+  res.send('Procesando recuperación de contraseña');
+});
+
+router.post("/logout", (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).send('Error al cerrar sesión');
+    }
+    res.send('Sesión cerrada correctamente');
+  });
+});
+
+module.exports = router;

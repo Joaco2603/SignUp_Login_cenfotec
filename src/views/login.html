@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="css/signup.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons+Round"
+      rel="stylesheet"/>
+</head>
+<body>
+    <section class="login-container">
+        <article class="form-container">
+          <div class="intro">
+            <h1>Bienvenido de nuevo</h1>
+            <p>Bienvenido, Porfavor ingrese los datos del formulario</p>
+          </div>
+  
+          <form class="form" action="/login" method="POST" id="form">
+            <div class="email-input">
+              <span class="material-icons-round icon-size"> mail_outline </span>
+              <span id="seperator"></span>
+              <div class="input-container">
+                <p class="sub-title">Correo</p>
+                <input type="email" class="input" name="email" id="email" />
+              </div>
+            </div>
+  
+            <div class="email-input">
+              <span class="material-icons-round icon-size"> password </span>
+              <span id="seperator"></span>
+              <div class="input-container">
+                <p class="sub-title">Contraseña</p>
+                <input type="password" class="input" name="password" id="password" />
+              </div>
+            </div>
+  
+            <button type="submit" id="submit">Continuar</button>
+            <div id="loader"></div>
+          </form>
+ 
+  
+        </article>
+        <article class="login-side-bg"></article>
+      </section>
+</body>
+<script type="module" src="/js/loginSchema.js"></script>
+</html>
