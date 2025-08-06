@@ -44,7 +44,7 @@ a {
 }
 
 .form-container {
-  height: 100%;
+  height: 98%;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -231,7 +231,7 @@ a {
   }
 
   .form-container {
-    width: 100%;
+    width: 97%;
   }
 
   #email-icon {

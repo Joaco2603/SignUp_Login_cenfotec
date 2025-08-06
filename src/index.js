@@ -22,12 +22,14 @@ const PORT = process.env.PORT;
 app.use(
   session({
     secret: process.env.PRIVATE_KEY_SESSION,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: false,
-      maxAge: 60000
-    }
+    // resave: false,
+    // saveUninitialized: false,
+    // cookie: {
+    //   secure: process.env.NODE_ENV === "production", // true solo en HTTPS
+    //   httpOnly: true,
+    //   maxAge: 1000 * 60 * 60 * 24, // 1 día
+    //   sameSite: "none", // o "strict" para mayor seguridad
+    // },
   })
 );
 
