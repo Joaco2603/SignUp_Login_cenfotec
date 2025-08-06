@@ -6,6 +6,10 @@ const router = Router();
 const User = require('../models/users.js');
 
 //Htmls
+router.get('/',(req,res)=>{
+  res.render("index.html");
+})
+
 router.get('/dashboard', (req, res) => {
   res.render("dashboard.html");
 })
@@ -130,7 +134,7 @@ router.post("/signup", async (req, res) => {
 
 
 // Logout
-router.post("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.session.destroy(err => {
     if (err) {
       console.error('Error destroying session:', err);

@@ -753,7 +753,7 @@ header{
   .footer {
     flex-wrap: wrap;
     box-sizing: border-box;
-    padding: 2em;
+    padding: 0.4em;
     gap: 10px;
     display: flex;
     bottom: 0;
