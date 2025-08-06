@@ -8,10 +8,9 @@ const path = require('path');
 
 const { authMiddleware } = require('./middleware/authMiddleware.js');
 
-
-app.set('views', path.join(__dirname, 'views')); //le decimos a express donde se encuentran las vistas
-app.engine('html', require('ejs').renderFile); //Registra un motor de plantillas para archivos html usando ejs
-app.set('view engine', 'ejs');//Configura ejs como el motor de plantilla predeterminado
+app.set('views', path.join(__dirname, 'views')); // We tell Express where to find the views.
+app.engine('html', require('ejs').renderFile); // Registers a template engine for HTML files using EJS.
+app.set('view engine', 'ejs'); // Sets EJS as the default template engine.
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -27,20 +26,19 @@ app.use(
   })
 );
 
-//Archivos staticos
+//Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Iniciar Base de datos
+//Iniatilize db
 require('./db.js');
 
 app.use(authMiddleware({
-  // Puedes sobrescribir configs aquí
   debug: true
 }));
 
 app.use('/', require('./routes/auth.js'));
 
-//Necesitamos encender el servidor
+//Listen port
 app.listen(PORT, () => {
   console.log(`[LOG] RUNNING IN PORT ${PORT}`);
 })

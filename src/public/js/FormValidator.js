@@ -10,7 +10,7 @@ export class FormValidator {
     }
 
     init() {
-        // Configurar eventos para cada input
+        // Config events for input
         this.inputs.forEach(input => {
             // Seek the span
             const spanLabel = input.previousElementSibling;
