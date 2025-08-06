@@ -20,7 +20,7 @@ npm install
 ### Inicializar proyecto
 
 ```bash
-npm run start
+npm dev
 ```
 
 ### Inicializar la base de datos

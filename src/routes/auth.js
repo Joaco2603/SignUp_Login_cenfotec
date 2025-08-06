@@ -89,11 +89,11 @@ router.post("/signup", async (req, res) => {
       });
     }
 
-    // Hash de la contraseña
+    // Password hash
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Crear nuevo usuario
+    // Create new user
     const newUser = await User.create({
       name: name.toLowerCase(),
       last_name: last_name.toLowerCase(),
@@ -102,7 +102,7 @@ router.post("/signup", async (req, res) => {
       created_at: new Date()
     });
 
-    // Crear sesión para el nuevo usuario
+    // Create session
     req.session.user = {
       id: newUser._id,
       email: newUser.email,
